@@ -6,6 +6,30 @@
         "hello": {
             "description": "Prints hello world",
             "action": "hello world"
+        },
+        "hello-flag": {
+            "description": "hello with flags",
+            "action": [
+                {
+                    "if": "flags['--name']",
+                    "then": "{{flags['--uppercase'] ? 'HELLO' : 'Hello'}}, {{flags['--name']}}",
+                    "else": "{{flags['--uppercase'] ? 'HELLO WORLD' : 'Hello world'}}"
+                }
+            ],
+            "flags": {
+                "--name": {
+                    "descriotion": "Provides name for hello command!",
+                    "type": "string",
+                    "aliases": ["-n"],
+                    "required": false
+                },
+                "--uppercase": {
+                    "description": "Print the hello world command in all uppercase",
+                    "type": "boolean",
+                    "aliases": ["-u"],
+                    "required": false
+                }
+            }
         }
     }
 }
